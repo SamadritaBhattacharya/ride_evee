@@ -3,9 +3,9 @@ const { getAllCustomers, addCustomer, deleteCustomer, updateCustomer, getCustome
 const router = express.Router();
 
 router.get('/customers', getAllCustomers);
-router.post('/customers', addCustomer);
-router.delete('/customers/:id', deleteCustomer);
-router.put('/customers/:id', updateCustomer);
-router.get('/customers/:id', getCustomerDetails);
+router.post('/addCustomer', addCustomer);
+router.delete('/customer/:id', deleteCustomer);
+router.put('/customer/:id', updateCustomer);
+router.get('/customer/:id', getCustomerDetails);
 
 module.exports = router;

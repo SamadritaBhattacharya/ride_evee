@@ -1,15 +1,27 @@
+
 import React from 'react';
 import Navbar from './components/Navbar';
-import AddCustomer from './components/AddCustomer';
+import HomePage from './components/HomePage'; 
+import CustomerForm from './components/CustomerForm';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <div className="p-4">
-        <AddCustomer />
+   
+      <div>
+        <Navbar />
+        
+      <Routes>
+        <Route path="/"  element={<HomePage/>}/> 
+        {/* <Route path="Customer" element={<CustomerForm />} />  */}
+        
+
+      </Routes>
+    
+        
+       
       </div>
-    </div>
+    
   );
 };
 

@@ -1,6 +1,6 @@
-// src/redux/store.js
+
 import { configureStore } from '@reduxjs/toolkit';
-import customerReducer from './reducers/customer.reducer';
+import customerReducer from './slices/customerSlice';
 
 const store = configureStore({
   reducer: {

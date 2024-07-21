@@ -33,13 +33,13 @@ const getAllCustomers = async (req, res) => {
 
 // Add a new customer
 const addCustomer = async (req, res) => {
-  const { firstName, lastName, email, phone, password, alternatePhone } = req.body;
+  const { firstName, lastName, email, phone,  alternatePhone } = req.body;
 
-  const newCustomer = new Customer({ firstName, lastName, email, phone, password, alternatePhone });
+  const newCustomer = new Customer({ firstName, lastName, email, phone,  alternatePhone });
 
   try {
     const savedCustomer = await newCustomer.save();
-    await sendConfirmationEmail(email);
+    // await sendConfirmationEmail(email);
     res.status(201).json(savedCustomer);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -76,4 +76,4 @@ const getCustomerDetails = async (req, res) => {
   }
 };
 
-export  {getAllCustomers, updateCustomer, deleteCustomer, addCustomer, getCustomerDetails}
+module.exports = {getAllCustomers, updateCustomer, deleteCustomer, addCustomer, getCustomerDetails}

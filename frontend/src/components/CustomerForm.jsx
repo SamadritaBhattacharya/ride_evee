@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addCustomer } from '../redux/actions/customer.actions';
+import axios from 'axios';
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
@@ -8,73 +7,125 @@ const CustomerForm = () => {
     lastName: '',
     email: '',
     phone: '',
-    password: '',
-    alternatePhone: ''
+    alternatePhone: '',
   });
-
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addCustomer(formData));
+    try {
+      const response = await axios.post('http://localhost:5000/api/addCustomer', formData);
+      console.log('Customer added:', response.data);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        alternatePhone: '',
+      });
+      alert("Customer added successfully!")
+    } catch (error) {
+      console.error('Error adding customer:', error);
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 rounded shadow-md mt-4">
-      <h2 className="text-2xl font-bold mb-6">Add New Customer</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
+    <div className="container mx-auto p-4 flex-col-1">
+    <div className="bg-green-600 text-white text-xl font-semibold p-2 rounded-t-lg ">
+      Add Customer
+    </div>
+    <form onSubmit={handleSubmit} className="p-6 max-w-8xl mx-auto bg-white  shadow-md ">
+      
+      <div className="grid grid-cols-2 gap-4 ">
+        <div className="mb-4">
+        <label className="block   font-medium text-gray-700 ">First Name</label>
+          
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+            placeholder="Type First Name"
+            className="w-full p-2 border  shadow rounded-lg  px-3 py-2 "
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block   font-medium text-gray-700 ">Last Name:</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Type Last Name"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded-md"
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="mb-4">
+          <label className="block   font-medium text-gray-700 ">Phone:</label>
+          <div className="flex">
+            <select className="border rounded-l-md px-3 py-2 bg-gray-100">
+              <option>India (+91)</option>
+              {/* Add more country codes as needed */}
+            </select>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Type Mobile Number"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-r-md"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <label className="block   font-medium text-gray-700 ">Alternate Phone:</label>
+          <div className="flex">
+            <select className="border rounded-l-md px-3 py-2 bg-gray-100">
+              <option>India (+91)</option>
+              {/* Add more country codes as needed */}
+            </select>
+            <input
+              type="text"
+              placeholder="Alternate Mobile Number"
+              name="alternatePhone"
+              value={formData.alternatePhone}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-r-md"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="mb-4">
+        <label className="block font-medium text-gray-700 ">Email:</label>
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Type Email Address"
+          value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
+          required
+          className="w-full px-3 py-2 border rounded-md"
         />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-        <input
-          type="text"
-          name="alternatePhone"
-          placeholder="Alternate Phone"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Add Customer</button>
-      </form>
+      </div>
+      <div className="text-center">
+        <button type="submit" className="bg-green-600 hover:bg-green-800 text-white px-6 py-2 rounded-full md:w-1/4 shadow-lg">
+            Add
+          </button>
+      </div>
+    </form>
     </div>
+    
   );
 };
 
