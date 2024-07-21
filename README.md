@@ -31,7 +31,6 @@ git clone https://github.com/your-username/your-repository.git
 cd your-repository
 ```
 
-
 ### Frontend Setup
 
 1. Navigate to the `frontend` directory:
@@ -108,8 +107,6 @@ For any questions or feedback, please reach out to [your-email@example.com]().
 * Inspiration and resources from [React Documentation](https://reactjs.org/)
 * Tailwind CSS for styling
 * The open-source community for contributing to the various libraries used in this project
-
-
 
 ### Key Points:
 
