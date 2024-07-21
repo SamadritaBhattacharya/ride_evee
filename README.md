@@ -100,7 +100,7 @@ This project is licensed under the MIT License - see the [LICENSE]() file for de
 
 ## Contact
 
-For any questions or feedback, please reach out to [your-email@example.com]().
+For any questions or feedback, please reach out to [samadritabhatt163.official@gmail.com]()
 
 ## Acknowledgments
 
