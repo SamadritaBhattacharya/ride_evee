@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage'; 
 import CustomerForm from './components/CustomerForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import CustomerDetails from './components/CustomerDetails';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
         
       <Routes>
         <Route path="/"  element={<HomePage/>}/> 
-        {/* <Route path="Customer" element={<CustomerForm />} />  */}
+        <Route path="/customer/:id" element={<CustomerDetails />} /> 
         
 
       </Routes>
